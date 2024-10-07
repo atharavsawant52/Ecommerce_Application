@@ -15,7 +15,13 @@ body {
   padding: 15px;
   background-color: white;
   border-bottom: 1px solid #eaeaea;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  right: 0; 
+  z-index: 1000; 
 }
+
 
 .logo h1 {
   font-size: 24px;

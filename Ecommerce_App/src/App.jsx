@@ -8,7 +8,7 @@ import { Router } from 'react-router-dom';
 function App() {
   return (
     <>
-    <Navbar/>
+    <Navbar/>  
     <Routing/>
     </>
     

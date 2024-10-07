@@ -3,6 +3,8 @@ import { Route, Router, Routes } from "react-router-dom";
 import Home from "../Pages/Home";
 import Signup from "../Pages/Signup";
 import Login from "../Pages/Login";
+import CardComponent from "../Pages/CardComponent";
+
 
 function Routing() {
   return (
@@ -13,6 +15,7 @@ function Routing() {
         <Route path="/Login" element={<Login/>}/>
         <Route path="/login-home" element={<Home/>}/>
         <Route path="/Signup/login" element={<Login/>}/>
+        <Route path="/cart" element={<CardComponent/>} />
 
       </Routes>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../Pages/CardComponnent.css'
+import '../Pages/CardComponent.css'
 
 function CardComponent() {
 
@@ -20,7 +20,7 @@ function CardComponent() {
     
     
       const handleApplyCoupon = () => {
-        if (couponCode === 'DISCOUNT10') {
+        if (couponCode === 'happy10') {
           setDiscount(10); 
         } else {
           setDiscount(0);
