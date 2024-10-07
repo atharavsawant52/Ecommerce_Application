@@ -1,0 +1,57 @@
+.product-list {
+  display: inline-flex;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: 50% 10% 20% 5% 15%;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: 260px;
+  height: 380px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 95%;
+  height: 150px;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: top; 
+}
+
+.btn-product {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-product:hover{
+  background-color: #0456ad;
+}
+.card-name{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(20, 13, 13);
+  padding: 2px 0px;
+  font-size: medium;
+  overflow: hidden;
+}
+
+.card-detail{
+  font-size: xx-small;
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+.card-price{
+  padding-bottom: 10px;
+
+}
