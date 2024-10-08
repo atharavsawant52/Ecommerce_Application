@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { asyncgetproducts } from "../actions/ProductAction";
 import "../Pages/Card.css";
 import { addToCart } from "../actions/cartAction";
@@ -10,70 +10,86 @@ function Card() {
   const { products } = useSelector((state) => state.product);
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
-
-  // State to track whether the item is in the wishlist
   const [wishlist, setWishlist] = useState({});
 
   useEffect(() => {
     dispatch(asyncgetproducts());
   }, [dispatch]);
 
-  // Initialize wishlist state based on existing wishlist items
   useEffect(() => {
     const initialWishlist = {};
-    wishlistItems.forEach(item => {
-      initialWishlist[item.id] = true; // assuming item has a unique id
+    wishlistItems.forEach((item) => {
+      initialWishlist[item.id] = true;
     });
     setWishlist(initialWishlist);
   }, [wishlistItems]);
 
+  const getRandomDiscount = () => {
+    const discounts = [20, 50, 80]; // Allowed discount values
+    return discounts[Math.floor(Math.random() * discounts.length)];
+  };
+
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    const discount = getRandomDiscount();
+    const discountedPrice = Math.floor(
+      product.price * 80 * (1 - discount / 100)
+    );
+
+    const updatedProduct = {
+      ...product,
+      price: Math.floor(product.price * 80),
+      discount: discount,
+      discountedPrice: discountedPrice, // Adding discounted price to product
+    };
+    dispatch(addToCart(updatedProduct));
   };
 
   const handleAddToWishlist = (product) => {
-    const isInWishlist = wishlist[product.id]; // Check if the product is already in the wishlist
+    const isInWishlist = wishlist[product.id];
     if (isInWishlist) {
-      // If the product is already in the wishlist, remove it
-      dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: product });
-      setWishlist({ ...wishlist, [product.id]: false }); // Update the wishlist state
+      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: product });
+      setWishlist({ ...wishlist, [product.id]: false });
     } else {
-      // If not, add it to the wishlist
       dispatch(addToWishlist(product));
-      setWishlist({ ...wishlist, [product.id]: true }); // Update the wishlist state
+      setWishlist({ ...wishlist, [product.id]: true });
     }
   };
 
   return (
     <>
-      {products.map((data, index) => (
-        <div className="card" key={index}>
-          <div className="discount-badge">
-            {(data.price * 80 * 100) / (data.price * 160)}%
+      {products.map((data, index) => {
+        const discount = getRandomDiscount();
+        const discountedPrice = Math.floor(
+          data.price * 80 * (1 - discount / 100)
+        );
+
+        return (
+          <div className="card" key={index}>
+            <div className="discount-badge">{discount}%</div>
+            <img src={data.image} alt={data.title} className="image" />
+            <h3 className="title">{data.title}</h3>
+            <div className="price-container">
+              <span className="new-price">₹{discountedPrice}</span>
+              <span className="old-price">₹{Math.floor(data.price * 160)}</span>
+            </div>
+            <div>
+              <button
+                className="addToCartBtn"
+                onClick={() => handleAddToCart(data)}
+              >
+                Add to Cart
+              </button>
+              <button
+                className="addToWishlistBtn"
+                onClick={() => handleAddToWishlist(data)}
+                style={{ color: wishlist[data.id] ? "red" : "black" }}
+              >
+                <FaHeart />
+              </button>
+            </div>
           </div>
-          <img src={data.image} alt={data.title} className="image" />
-          <h3 className="title">{data.title}</h3>
-          <div className="price-container">
-            <span className="new-price">₹{data.price * 80}</span>
-            <span className="old-price">₹{data.price * 160}</span>
-          </div>
-          <div>
-            <button
-              className="addToCartBtn"
-              onClick={() => handleAddToCart(data)}
-            >
-              Add to Cart
-            </button>
-            <button 
-              className="addToWishlistBtn" 
-              onClick={() => handleAddToWishlist(data)} 
-              style={{ color: wishlist[data.id] ? 'red' : 'black' }} // Conditional color
-            >
-              <FaHeart />
-            </button>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }
