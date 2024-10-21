@@ -4,7 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { asyncgetproducts } from "../actions/ProductAction";
 import "../Pages/Card.css";
 import { addToCart } from "../actions/cartAction";
-import { addToWishlist } from "../actions/addToWishlist";
+import { addToWishlist, removeFromWishlist } from "../actions/addToWishlist"; // Import remove from wishlist
 
 function Card() {
   const { products } = useSelector((state) => state.product);
@@ -18,78 +18,68 @@ function Card() {
 
   useEffect(() => {
     const initialWishlist = {};
-    wishlistItems.forEach((item) => {
-      initialWishlist[item.id] = true;
+    const filteredWishlistItems = wishlistItems.filter(item => item !== null && item !== undefined);
+    
+    filteredWishlistItems.forEach((item) => {
+      if (item && item.id) { // Ensure item and item.id are valid
+        initialWishlist[item.id] = true;
+      }
     });
+    
     setWishlist(initialWishlist);
   }, [wishlistItems]);
 
-  const getRandomDiscount = () => {
-    const discounts = [20, 50, 80]; // Allowed discount values
-    return discounts[Math.floor(Math.random() * discounts.length)];
-  };
-
   const handleAddToCart = (product) => {
-    const discount = getRandomDiscount();
-    const discountedPrice = Math.floor(
-      product.price * 80 * (1 - discount / 100)
-    );
-
     const updatedProduct = {
       ...product,
-      price: Math.floor(product.price * 80),
-      discount: discount,
-      discountedPrice: discountedPrice, // Adding discounted price to product
+      price: Math.floor(product.price * 80), // Assuming you still want to apply this for the cart
     };
     dispatch(addToCart(updatedProduct));
   };
 
   const handleAddToWishlist = (product) => {
-    const isInWishlist = wishlist[product.id];
+    const isInWishlist = wishlist[product.id] || false;
     if (isInWishlist) {
-      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: product });
-      setWishlist({ ...wishlist, [product.id]: false });
+      dispatch(removeFromWishlist(product)); // Use the correct action
+      setWishlist((prevWishlist) => ({
+        ...prevWishlist,
+        [product.id]: false,
+      }));
     } else {
       dispatch(addToWishlist(product));
-      setWishlist({ ...wishlist, [product.id]: true });
+      setWishlist((prevWishlist) => ({
+        ...prevWishlist,
+        [product.id]: true,
+      }));
     }
   };
 
   return (
     <>
-      {products.map((data, index) => {
-        const discount = getRandomDiscount();
-        const discountedPrice = Math.floor(
-          data.price * 80 * (1 - discount / 100)
-        );
-
-        return (
-          <div className="card" key={index}>
-            <div className="discount-badge">{discount}%</div>
-            <img src={data.image} alt={data.title} className="image" />
-            <h3 className="title">{data.title}</h3>
-            <div className="price-container">
-              <span className="new-price">₹{discountedPrice}</span>
-              <span className="old-price">₹{Math.floor(data.price * 160)}</span>
-            </div>
-            <div>
-              <button
-                className="addToCartBtn"
-                onClick={() => handleAddToCart(data)}
-              >
-                Add to Cart
-              </button>
-              <button
-                className="addToWishlistBtn"
-                onClick={() => handleAddToWishlist(data)}
-                style={{ color: wishlist[data.id] ? "red" : "black" }}
-              >
-                <FaHeart />
-              </button>
-            </div>
+      {products.map((data, index) => (
+        <div className="card" key={index}>
+          <img src={data.image} alt={data.title} className="image" />
+          <h3 className="title">{data.title}</h3>
+          <div className="price-container">
+            <span className="new-price">₹{Math.floor(data.price * 80)}</span>
           </div>
-        );
-      })}
+          <div>
+            <button
+              className="addToCartBtn"
+              onClick={() => handleAddToCart(data)}
+            >
+              Add to Cart
+            </button>
+            <button
+              className="addToWishlistBtn"
+              onClick={() => handleAddToWishlist(data)}
+              style={{ color: wishlist[data.id] ? "red" : "black" }}
+            >
+              <FaHeart />
+            </button>
+          </div>
+        </div>
+      ))}
     </>
   );
 }

@@ -1,17 +1,32 @@
 import React, { useEffect, useState } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
+import { saveCartToLocalStorage, getCartFromLocalStorage } from '../utils/localStorage'; // Import your local storage functions
 import '../Pages/CardComponent.css';
 
 function CardComponent() {
+    const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.cartItems);
     const [couponCode, setCouponCode] = useState('');
     const [discount, setDiscount] = useState(0);
+
+    useEffect(() => {
+        // Initial loading from local storage
+        const storedCart = getCartFromLocalStorage();
+        if (storedCart.length > 0) {
+            // Dispatch an action to load these into your Redux store if needed
+        }
+    }, []);
+
+    useEffect(() => {
+        // Save cart to local storage whenever it changes
+        saveCartToLocalStorage(cartItems);
+    }, [cartItems]);
 
     const handleQuantityChange = (id, quantity) => {
         const updatedItems = cartItems.map(item =>
             item.id === id ? { ...item, quantity: parseInt(quantity) } : item
         );
-        setCartItems(updatedItems);
+        dispatch({ type: 'UPDATE_CART', payload: updatedItems }); // Update your Redux store with the new cart
     };
 
     const handleApplyCoupon = () => {

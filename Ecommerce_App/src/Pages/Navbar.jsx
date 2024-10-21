@@ -6,8 +6,7 @@ import '../Pages/Navbar.css';
 
 function Navbar() {
   const { cartItems } = useSelector((state) => state.cart);
-  const { wishlistItems } = useSelector((state) => state.wishlist); // Access wishlistItems correctly
-  console.log(wishlistItems);
+  const { wishlistItems } = useSelector((state) => state.wishlist);
 
   return (
     <nav className="navbar">

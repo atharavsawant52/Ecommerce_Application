@@ -1,4 +1,4 @@
-// src/reducers/wishlistReducer.js
+// src/reducer/wishlistSlice.js
 import { ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from '../actions/addToWishlist';
 
 const initialState = {
@@ -22,4 +22,4 @@ const wishlistReducer = (state = initialState, action) => {
     }
 };
 
-export default wishlistReducer;
+export default wishlistReducer; // Ensure this is correct
