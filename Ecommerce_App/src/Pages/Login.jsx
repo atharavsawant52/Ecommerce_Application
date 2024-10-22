@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import '../Pages/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { getUserFromLocalStorage } from '../utils/localStorage'; // Utility function import
+import { getUserFromLocalStorage, saveUserToLocalStorage } from '../utils/localStorage';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Dispatch function
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
     const user = getUserFromLocalStorage();
 
-    
-    if (user && (user.email === email) && (user.password === password)) {
-    
-      navigate('/login-home'); 
+    // Check if user exists and credentials match
+    if (user) {
+      if (user.email === email && user.password === password) {
+        // Save user to local storage to indicate user is logged in
+        saveUserToLocalStorage(user);
+        
+        // Dispatch LOGIN action to update Redux state
+        dispatch({ type: "LOGIN", payload: user });
+        
+        navigate('/'); // Home page par redirect karne ke liye
+      } else {
+        alert('Invalid email or password!');
+      }
     } else {
-      alert('Invalid email or password!');
+      alert('User does not exist. Please sign up first.');
     }
   };
 
@@ -59,7 +69,11 @@ const Login = () => {
         </form>
 
         <p className="login-forgot">
-          <a href="#">Forget Password?</a>
+          <Link to="#">Forget Password?</Link>
+        </p>
+
+        <p>
+          <Link to="/signup">Don't have an account? Sign up</Link>
         </p>
       </div>
     </div>
