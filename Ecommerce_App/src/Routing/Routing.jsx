@@ -5,6 +5,8 @@ import Signup from "../Pages/Signup";
 import Login from "../Pages/Login";
 import CardComponent from "../Pages/CardComponent";
 import Wishlist from "../Pages/Wishlist";
+import Contact from "../Pages/Contact";
+import About from "../Pages/About";
 
 function Routing() {
   return (
@@ -16,6 +18,8 @@ function Routing() {
         <Route path="/login-home" element={<Home />} />
         <Route path="/cart" element={<CardComponent />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/contact"element={<Contact/>}/>
+        <Route path="/About"element={<About/>}/>
       </Routes>
     </div>
   );

@@ -14,14 +14,13 @@ function Navbar() {
   const dispatch = useDispatch();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  // Logout handler
   const handleLogout = () => {
     clearUserFromLocalStorage();
     dispatch({ type: "LOGOUT" });
     setDropdownOpen(false);
   };
 
-  // Dropdown toggle for user profile
+ 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
@@ -42,7 +41,7 @@ function Navbar() {
         <li>
           <Link to="/about">About</Link>
         </li>
-        {/* Render Sign Up/Log In link only if user is not logged in */}
+        
         {!user && (
           <>
             <li>
@@ -58,7 +57,7 @@ function Navbar() {
       <div className="search-bar">
         <input type="text" placeholder="What are you looking for?" />
         <button>
-          <FaSearch /> {/* Search Icon */}
+          <FaSearch /> 
         </button>
       </div>
 
@@ -72,7 +71,7 @@ function Navbar() {
           <span className="count">{cartItems ? cartItems.length : 0}</span>
         </Link>
 
-        {/* Show profile icon only when user is logged in */}
+    
         {user && (
           <div className="icon-container" onClick={toggleDropdown}>
             <FaRegUserCircle />
