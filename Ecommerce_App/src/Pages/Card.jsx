@@ -26,7 +26,7 @@ function Card() {
   const handleAddToCart = (product) => {
     const updatedProduct = {
       ...product,
-      price: Math.floor(product.price * 80),
+      price: Math.floor(product.price * 20),
     };
     dispatch(addToCart(updatedProduct));
   };
@@ -57,7 +57,7 @@ function Card() {
             <img src={data.image} alt={data.title} className="image" />
             <h3 className="title">{data.title}</h3>
             <div className="price-container">
-              <span className="new-price">₹{Math.floor(data.price * 80)}</span>
+              <span className="new-price">₹{Math.floor(data.price * 20)}</span>
             </div>
             <div>
               <button

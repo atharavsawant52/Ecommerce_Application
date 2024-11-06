@@ -9,6 +9,7 @@ import Contact from "../Pages/Contact";
 import About from "../Pages/About";
 import Checkout from "../Pages/Checkout";
 import ProductDetails from "../Pages/ProductDetails";
+import CategoryPage from "../Pages/CategoryPage";
 
 function Routing() {
   return (
@@ -20,10 +21,11 @@ function Routing() {
         <Route path="/login-home" element={<Home />} />
         <Route path="/cart" element={<CardComponent />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/contact"element={<Contact/>}/>
-        <Route path="/About"element={<About/>}/>
-        <Route path="/checkout" element={<Checkout/>} />
-        <Route path="/product/:id" element={<ProductDetails/>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} /> 
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,11 @@
+.category-page__product-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 100px;
+}
+.category-page__no-products{
+    margin-left: 550px;
+    margin-top: 200px;
+    font-size: large;
+}
