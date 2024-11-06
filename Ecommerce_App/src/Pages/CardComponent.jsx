@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveCartToLocalStorage, getCartFromLocalStorage } from '../utils/localStorage'; // Import your local storage functions
 import '../Pages/CardComponent.css';
+import { Link } from 'react-router-dom';
 
 function CardComponent() {
     const dispatch = useDispatch();
@@ -107,7 +108,9 @@ function CardComponent() {
                     <p>Shipping: <span>Free</span></p>
                     <p>Total: <span>₹{calculateTotal()}</span></p>
                 </div>
-                <button className="btn checkout">Proceed to Checkout</button>
+                <Link to="/checkout" className="btn checkout">
+                    Proceed to Checkout
+                </Link>
             </div>
         </div>
     );

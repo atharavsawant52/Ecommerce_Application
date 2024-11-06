@@ -7,6 +7,8 @@ import CardComponent from "../Pages/CardComponent";
 import Wishlist from "../Pages/Wishlist";
 import Contact from "../Pages/Contact";
 import About from "../Pages/About";
+import Checkout from "../Pages/Checkout";
+import ProductDetails from "../Pages/ProductDetails";
 
 function Routing() {
   return (
@@ -20,6 +22,8 @@ function Routing() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/contact"element={<Contact/>}/>
         <Route path="/About"element={<About/>}/>
+        <Route path="/checkout" element={<Checkout/>} />
+        <Route path="/product/:id" element={<ProductDetails/>} />
       </Routes>
     </div>
   );
