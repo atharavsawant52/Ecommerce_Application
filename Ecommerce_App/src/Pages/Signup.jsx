@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../Pages/Signup.css'; 
+import '../Pages/Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { saveUserToLocalStorage } from '../utils/localStorage';
 
@@ -21,11 +21,11 @@ const Signup = () => {
       cart: [] // Initialize an empty cart
     };
 
-    // Local storage me user data save karna
+    // Save user data to local storage
     saveUserToLocalStorage(userData);
 
     // Redirect to login page
-    navigate('/Login'); 
+    navigate('/Login');
   };
 
   return (

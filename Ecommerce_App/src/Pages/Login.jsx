@@ -8,23 +8,25 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Dispatch function
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Get user from local storage
     const user = getUserFromLocalStorage();
 
-    // Check if user exists and credentials match
+    // Check if the user exists and credentials match
     if (user) {
       if (user.email === email && user.password === password) {
-        // Save user to local storage to indicate user is logged in
+        // Save user to local storage as logged-in state
         saveUserToLocalStorage(user);
-        
+
         // Dispatch LOGIN action to update Redux state
         dispatch({ type: "LOGIN", payload: user });
-        
-        navigate('/'); // Home page par redirect karne ke liye
+
+        // Redirect to home page
+        navigate('/');
       } else {
         alert('Invalid email or password!');
       }

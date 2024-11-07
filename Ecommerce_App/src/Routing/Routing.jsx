@@ -10,22 +10,24 @@ import About from "../Pages/About";
 import Checkout from "../Pages/Checkout";
 import ProductDetails from "../Pages/ProductDetails";
 import CategoryPage from "../Pages/CategoryPage";
+import Account from "../Pages/Account";
 
 function Routing() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/login-home" element={<Home />} />
         <Route path="/cart" element={<CardComponent />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} /> 
+        <Route path="/about" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/account" element={<Account/>} />
       </Routes>
     </div>
   );

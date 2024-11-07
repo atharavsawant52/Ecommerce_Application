@@ -1,8 +1,18 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaBox, FaTimesCircle, FaStar, FaSignOutAlt } from "react-icons/fa";
+import { clearUserFromLocalStorage } from "../utils/localStorage"; // Import clear function
+import { useNavigate } from "react-router-dom"; // For navigation
 
 const ProfileDropdown = ({ handleLogout }) => {
+  const navigate = useNavigate();
+
+  // Update the logout function to clear user and navigate to login page
+  const logout = () => {
+    clearUserFromLocalStorage(); // Clear user data from localStorage
+    handleLogout(); // Call the passed prop function if you need to update parent state
+    navigate("/login"); // Redirect to login page
+  };
+
   return (
     <div className="profile-dropdown">
       <ul>
@@ -13,7 +23,7 @@ const ProfileDropdown = ({ handleLogout }) => {
         </li>
         <li>
           <Link to="/orders">
-            <FaBox /> My Order
+            <FaBox /> My Orders
           </Link>
         </li>
         <li>
@@ -27,7 +37,7 @@ const ProfileDropdown = ({ handleLogout }) => {
           </Link>
         </li>
         <li>
-          <button onClick={handleLogout}>
+          <button onClick={logout}>
             <FaSignOutAlt /> Logout
           </button>
         </li>
