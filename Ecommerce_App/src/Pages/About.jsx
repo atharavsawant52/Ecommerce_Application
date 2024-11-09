@@ -6,45 +6,57 @@ const About = () => {
     <div className="about-container">
       <div className="about-content">
         <div className="about-text">
-          <h2>Our Story</h2>
+          <h2>About Me</h2>
           <p>
-            Launched in 2015, Exclusive is South Asia's premier online shopping
-            marketplace with an active presence in Bangladesh. Supported by a
-            wide range of tailored marketing, data, and service solutions,
-            Exclusive has 10,500 sellers and 300 brands and serves 3 million
-            customers across the region.
+            Hello, my name is <strong>Atharav Sawant</strong>. I am a React
+            Developer currently pursuing a Bachelor's in Computer Science and
+            living in Thane.
           </p>
           <p>
-            Exclusive has more than 1 million products to offer, growing very
-            fast. Exclusive offers a diverse assortment in categories ranging
-            from consumer.
+            I have strong technical skills in <strong>HTML</strong>,{" "}
+            <strong>CSS</strong>, <strong>JavaScript</strong>, and{" "}
+            <strong>React</strong>. I have developed various projects, including
+            anime websites, the Jarvis Company website, and basic UI designs,
+            showcasing my expertise.
           </p>
+          <p>
+            I am certified in Frontend Development by <strong>Techpaathshala</strong> 
+            and plan to expand my skills in <strong>Backend Development</strong> in the future.
+          </p>
+          <p>
+            As a fresher, my short-term goal is to secure a job to enhance my
+            skills and gain practical experience in the industry.
+          </p>
+          <p>Thank you.</p>
         </div>
         <div className="about-image">
-          <img src="https://53.fs1.hubspotusercontent-na1.net/hubfs/53/ecommerce%20marketing.jpg" alt="About Us" />
+          <img
+            src="https://53.fs1.hubspotusercontent-na1.net/hubfs/53/ecommerce%20marketing.jpg" 
+            alt="Ecommerce"
+          />
         </div>
       </div>
-      
+
       <div className="stats-container">
         <div className="stat-box">
-          <div className="icon">🛍️</div>
-          <h3>10.5k</h3>
-          <p>Sellers active on our site</p>
+          <div className="icon">💻</div>
+          <h3>HTML, CSS, JS, React</h3>
+          <p>Technologies I specialize in</p>
         </div>
         <div className="stat-box highlight">
-          <div className="icon">💰</div>
-          <h3>33k</h3>
-          <p>Monthly Product Sale</p>
+          <div className="icon">🖥️</div>
+          <h3>Frontend Development</h3>
+          <p>Certifications and expertise in frontend technologies</p>
         </div>
         <div className="stat-box">
-          <div className="icon">👥</div>
-          <h3>45.5k</h3>
-          <p>Customers active on our site</p>
+          <div className="icon">🚀</div>
+          <h3>Projects</h3>
+          <p>Various projects showcasing my skills in web development</p>
         </div>
         <div className="stat-box">
-          <div className="icon">📈</div>
-          <h3>25k</h3>
-          <p>Annual gross sale in our site</p>
+          <div className="icon">🎯</div>
+          <h3>Career Goal</h3>
+          <p>Secure a job to enhance my skills and gain practical experience</p>
         </div>
       </div>
     </div>
