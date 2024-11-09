@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { FaUser, FaBox, FaTimesCircle, FaStar, FaSignOutAlt } from "react-icons/fa";
-import { clearUserFromLocalStorage } from "../utils/localStorage"; // Import clear function
-import { useNavigate } from "react-router-dom"; // For navigation
+import { useNavigate } from "react-router-dom";
 
 const ProfileDropdown = ({ handleLogout }) => {
   const navigate = useNavigate();
 
-  // Update the logout function to clear user and navigate to login page
   const logout = () => {
-    clearUserFromLocalStorage(); // Clear user data from localStorage
-    handleLogout(); // Call the passed prop function if you need to update parent state
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem('user');
+    localStorage.removeItem('wishlist');
+    localStorage.removeItem('cart');
+    handleLogout(); 
+    navigate("/login"); 
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Account.css';
 import { saveUserToLocalStorage, getUserFromLocalStorage } from '../utils/localStorage';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Account = () => {
   const initialProfile = getUserFromLocalStorage() || {
@@ -35,7 +36,7 @@ const Account = () => {
   };
 
   const handleEditClick = () => {
-    setIsEditMode(true); // Enable edit mode
+    setIsEditMode(true); 
   };
 
   return (
@@ -43,16 +44,16 @@ const Account = () => {
       <aside className="account-sidebar">
         <nav>
           <ul>
-            <li><a href="#profile" className="active">My Profile</a></li>
-            <li><a href="#address">Address Book</a></li>
-            <li><a href="#payment">My Payment Options</a></li>
-            <li><a href="#returns">My Returns</a></li>
-            <li><a href="#cancellations">My Cancellations</a></li>
-            <li><a href="#wishlist">My Wishlist</a></li>
+            <li><Link to="/account" className="active">My Profile</Link></li>
+            <li><Link to="/address">Address Book</Link></li>
+            <li><Link to="/payment">My Payment Options</Link></li> 
+            <li><Link to="/returns">My Returns</Link></li>
+            <li><Link to="/cancellations">My Cancellations</Link></li> 
+            <li><Link to="/wishlist">My Wishlist</Link></li> 
           </ul>
         </nav>
       </aside>
-      
+
       <div className="account-content">
         <h2>{isEditMode ? 'Edit Your Profile' : 'Your Profile'}</h2>
         

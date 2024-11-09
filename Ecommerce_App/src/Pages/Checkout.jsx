@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './Checkout.css';
 
 function Checkout() {
     const cartItems = useSelector((state) => state.cart.cartItems);
+    const user = useSelector((state) => state.user); // Get user from Redux store
+    const navigate = useNavigate();
+
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -17,7 +21,7 @@ function Checkout() {
         return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
     };
 
-    const discount = 10; // Example discount for demonstration
+    const discount = 10; 
     const calculateTotal = () => {
         const subtotal = calculateSubtotal();
         return subtotal - (subtotal * discount) / 100;
@@ -25,8 +29,27 @@ function Checkout() {
 
     const handlePlaceOrder = (e) => {
         e.preventDefault();
+
+        if (!user) {
+            alert('Please log in to place your order!');
+            return;
+        }
+
+    
+        const orderDetails = {
+            user: user,
+            items: cartItems,
+            totalAmount: calculateTotal(),
+            date: new Date().toLocaleString(),
+        };
+
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(orderDetails);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
         setOrderPlaced(true);
         alert('Order placed successfully!');
+        navigate('/orders');  
     };
 
     return (

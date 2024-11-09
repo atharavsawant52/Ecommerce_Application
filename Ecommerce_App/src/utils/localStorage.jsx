@@ -1,55 +1,85 @@
-// utils/localStorage.js
-
-// User Functions
-export const saveUserToLocalStorage = (user) => {
-  if (user) {
-    localStorage.setItem('user', JSON.stringify(user));
-  } else {
-    console.warn("Attempted to save null user to local storage.");
+const isLocalStorageAvailable = () => {
+  try {
+    const test = '__test__';
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
   }
+};
+
+export const saveToLocalStorage = (key, data) => {
+  if (!isLocalStorageAvailable()) {
+    console.warn('LocalStorage is not available in this environment.');
+    return;
+  }
+  if (data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  } else {
+    console.warn(`Attempted to save null or undefined data to local storage for key: ${key}`);
+  }
+};
+
+export const getFromLocalStorage = (key, defaultValue = null) => {
+  if (!isLocalStorageAvailable()) {
+    console.warn('LocalStorage is not available in this environment.');
+    return defaultValue;
+  }
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : defaultValue;
+};
+
+export const removeFromLocalStorage = (key) => {
+  if (!isLocalStorageAvailable()) {
+    console.warn('LocalStorage is not available in this environment.');
+    return;
+  }
+  localStorage.removeItem(key);
+};
+
+// Specific functions to manage user, wishlist, cart, and products
+
+export const saveUserToLocalStorage = (user) => {
+  saveToLocalStorage('user', user);
 };
 
 export const getUserFromLocalStorage = () => {
-  const user = localStorage.getItem('user');
-  return user ? JSON.parse(user) : null;
+  return getFromLocalStorage('user');
 };
 
 export const clearUserFromLocalStorage = () => {
-  localStorage.removeItem('user');
+  removeFromLocalStorage('user');
 };
 
-// Wishlist Functions
 export const saveWishlistToLocalStorage = (wishlist) => {
-  if (wishlist) {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-  } else {
-    console.warn("Attempted to save null wishlist to local storage.");
-  }
+  saveToLocalStorage('wishlist', wishlist);
 };
 
 export const getWishlistFromLocalStorage = () => {
-  const wishlist = localStorage.getItem('wishlist');
-  return wishlist ? JSON.parse(wishlist) : [];
+  return getFromLocalStorage('wishlist', []);
 };
 
 export const clearWishlistFromLocalStorage = () => {
-  localStorage.removeItem('wishlist');
+  removeFromLocalStorage('wishlist');
 };
 
-// Cart Functions
 export const saveCartToLocalStorage = (cart) => {
-  if (cart) {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  } else {
-    console.warn("Attempted to save null cart to local storage.");
-  }
+  saveToLocalStorage('cart', cart);
 };
 
 export const getCartFromLocalStorage = () => {
-  const cart = localStorage.getItem('cart');
-  return cart ? JSON.parse(cart) : [];
+  return getFromLocalStorage('cart', []);
 };
 
 export const clearCartFromLocalStorage = () => {
-  localStorage.removeItem('cart');
+  removeFromLocalStorage('cart');
+};
+
+export const saveProductsToLocalStorage = (products) => {
+  saveToLocalStorage('products', products);
+};
+
+export const getProductsFromLocalStorage = () => {
+  return getFromLocalStorage('products', []);
 };
