@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../actions/cartAction';
+import { ADD_TO_CART, UPDATE_CART } from '../actions/cartAction';
 
 const initialState = {
     cartItems: [],
@@ -25,6 +25,11 @@ const cartReducer = (state = initialState, action) => {
                     cartItems: [...state.cartItems, { ...item, quantity: 1 }],
                 };
             }
+        case UPDATE_CART:
+            return {
+                ...state,
+                cartItems: action.payload,
+            };
         default:
             return state;
     }

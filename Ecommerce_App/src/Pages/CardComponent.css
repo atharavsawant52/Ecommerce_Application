@@ -69,4 +69,60 @@
     background-color: #d62828; 
 }
 
-  
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background-color: #ddd;
+}
+
+.quantity-btn:disabled {
+  cursor: not-allowed;
+  background-color: #f0f0f0;
+}
+
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.quantity-input:focus {
+  border-color: #000;
+}
+
+.quantity-btn.increase {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.quantity-btn.decrease {
+  background-color: #d9463e;
+  color: white;
+}
+
+.quantity-btn.increase:hover {
+  background-color: #afcdb1;
+}
+
+.quantity-btn.decrease:hover {
+  background-color: #e53935;
+}
+

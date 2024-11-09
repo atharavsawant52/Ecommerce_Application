@@ -32,6 +32,10 @@ export const getWishlistFromLocalStorage = () => {
   return wishlist ? JSON.parse(wishlist) : [];
 };
 
+export const clearWishlistFromLocalStorage = () => {
+  localStorage.removeItem('wishlist');
+};
+
 // Cart Functions
 export const saveCartToLocalStorage = (cart) => {
   if (cart) {
@@ -44,4 +48,8 @@ export const saveCartToLocalStorage = (cart) => {
 export const getCartFromLocalStorage = () => {
   const cart = localStorage.getItem('cart');
   return cart ? JSON.parse(cart) : [];
+};
+
+export const clearCartFromLocalStorage = () => {
+  localStorage.removeItem('cart');
 };
