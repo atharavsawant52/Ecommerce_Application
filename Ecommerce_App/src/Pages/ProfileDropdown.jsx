@@ -32,7 +32,7 @@ const ProfileDropdown = ({ handleLogout }) => {
           </Link>
         </li>
         <li>
-          <Link to="/reviews">
+          <Link to="/reviews">git 
             <FaStar /> My Reviews
           </Link>
         </li>

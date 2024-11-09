@@ -36,6 +36,8 @@ function Routing() {
         <Route path="/address" element={<Newupdate/>} />
         <Route path="/payment" element={<Newupdate/>} />
         <Route path="/returns" element={<Newupdate/>} />
+        <Route path="/reviews" element={<Newupdate/>} />
+
       </Routes>
     </div>
   );
