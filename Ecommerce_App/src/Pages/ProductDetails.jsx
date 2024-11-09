@@ -47,7 +47,7 @@ const ProductDetails = () => {
         <div className="product-info">
           <h1 className="product-title">{product.title}</h1>
           <p className="product-description">{product.description}</p>
-          <p className="price">₹{Math.floor(product.price * 80)}</p>
+          <p className="price">₹{Math.floor(product.price * 20)}</p>
 
           <div className="quantity-selector">
             <button onClick={decreaseQuantity}>-</button>

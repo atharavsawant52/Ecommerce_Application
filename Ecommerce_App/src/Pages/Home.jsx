@@ -4,6 +4,11 @@ import "./Home.css";
 import Slidebar from "./Slidebar";
 import Banner from "./Banner";
 import Card from "./Card";
+import FeaturedProducts from "./FeaturedProducts";
+import Services from "./Services";
+import ProductsGrid from "./ProductsGrid";
+import Footer from "./Footer";
+import BestSellingProducts from "./BestSellingProducts";
 
 const Home = () => {
   return (
@@ -15,6 +20,11 @@ const Home = () => {
       <div className="product">
         <Card />
       </div>
+      <Services/>
+      <FeaturedProducts/>
+      <BestSellingProducts/>
+      <ProductsGrid/>
+      <Footer/>
     </>
   );
 };
