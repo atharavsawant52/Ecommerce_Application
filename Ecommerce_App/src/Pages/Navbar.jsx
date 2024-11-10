@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirecting
 import { FaSearch, FaHeart, FaShoppingCart, FaRegUserCircle } from "react-icons/fa";
 import ProfileDropdown from "./ProfileDropdown";
 import { clearUserFromLocalStorage } from "../utils/localStorage";
@@ -12,6 +12,8 @@ function Navbar() {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
     clearUserFromLocalStorage();
@@ -19,7 +21,13 @@ function Navbar() {
     setDropdownOpen(false);
   };
 
- 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate("/Newupdate", { state: { query: searchQuery } });
+    }
+  };
+
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
@@ -31,34 +39,28 @@ function Navbar() {
       </div>
 
       <ul className="nav-links">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/about">About</Link></li>
         {!user && (
           <>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
-            <li>
-              <Link to="/login">Log In</Link>
-            </li>
+            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link to="/login">Log In</Link></li>
           </>
         )}
       </ul>
 
-      <div className="search-bar">
-        <input type="text" placeholder="What are you looking for?" />
-        <button>
-          <FaSearch /> 
-        </button>
-      </div>
+      <form className="search-bar" onSubmit={handleSearchSubmit}>
+        <input
+          type="text"
+          placeholder="What are you looking for?"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <Link to="/submit" type="submit">
+          <FaSearch />
+        </Link>
+      </form>
 
       <div className="icons">
         <Link to="/wishlist" className="icon-container">
@@ -69,8 +71,6 @@ function Navbar() {
           <FaShoppingCart />
           <span className="count">{cartItems ? cartItems.length : 0}</span>
         </Link>
-
-    
         {user && (
           <div className="icon-container" onClick={toggleDropdown}>
             <FaRegUserCircle />
