@@ -10,13 +10,11 @@ function Wishlist() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Initial loading from local storage
     const storedWishlist = getWishlistFromLocalStorage();
-    // You can dispatch an action to load these into your Redux store if needed
+    
   }, []);
 
   useEffect(() => {
-    // Save wishlist to local storage whenever it changes
     saveWishlistToLocalStorage(wishlistItems);
   }, [wishlistItems]);
 
@@ -36,7 +34,7 @@ function Wishlist() {
               <img src={item.image} alt={item.title} className="wishlist-image" />
               <div className="item-info">
                 <h3 className="item-title">{item.title}</h3>
-                <p className="item-price">₹{Math.floor(item.price * 80)}</p>
+                <p className="item-price">₹{Math.floor(item.price * 20)}</p>
               </div>
               <button className="remove-button" onClick={() => handleRemoveFromWishlist(item)}>
                 <FaTrash />

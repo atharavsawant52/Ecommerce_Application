@@ -10,37 +10,33 @@ const isLocalStorageAvailable = () => {
 };
 
 export const saveToLocalStorage = (key, data) => {
-  if (!isLocalStorageAvailable()) {
-    console.warn('LocalStorage is not available in this environment.');
-    return;
-  }
+  if (!isLocalStorageAvailable()) return;
   if (data) {
     localStorage.setItem(key, JSON.stringify(data));
-  } else {
-    console.warn(`Attempted to save null or undefined data to local storage for key: ${key}`);
   }
 };
 
 export const getFromLocalStorage = (key, defaultValue = null) => {
-  if (!isLocalStorageAvailable()) {
-    console.warn('LocalStorage is not available in this environment.');
-    return defaultValue;
-  }
+  if (!isLocalStorageAvailable()) return defaultValue;
   const data = localStorage.getItem(key);
   return data ? JSON.parse(data) : defaultValue;
 };
 
 export const removeFromLocalStorage = (key) => {
-  if (!isLocalStorageAvailable()) {
-    console.warn('LocalStorage is not available in this environment.');
-    return;
-  }
+  if (!isLocalStorageAvailable()) return;
   localStorage.removeItem(key);
 };
 
-// Specific functions to manage user, wishlist, cart, and products
+export const clearAllUserData = () => {
+  clearUserFromLocalStorage();
+  clearCartFromLocalStorage();
+  clearWishlistFromLocalStorage();
+  removeFromLocalStorage('orders');
+  removeFromLocalStorage('cancellations');
+};
 
 export const saveUserToLocalStorage = (user) => {
+  clearAllUserData();
   saveToLocalStorage('user', user);
 };
 
@@ -82,4 +78,24 @@ export const saveProductsToLocalStorage = (products) => {
 
 export const getProductsFromLocalStorage = () => {
   return getFromLocalStorage('products', []);
+};
+
+export const login = (user) => {
+  clearAllUserData();
+  saveUserToLocalStorage(user);
+  saveCartToLocalStorage([]);
+  saveWishlistToLocalStorage([]);
+};
+
+export const signup = (user) => {
+  clearAllUserData();
+  saveUserToLocalStorage(user);
+  saveCartToLocalStorage([]);
+  saveWishlistToLocalStorage([]);
+};
+
+export const logout = () => {
+  clearUserFromLocalStorage();
+  clearCartFromLocalStorage();
+  clearWishlistFromLocalStorage();
 };

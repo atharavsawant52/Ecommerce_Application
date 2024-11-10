@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Account.css';
 import { saveUserToLocalStorage, getUserFromLocalStorage } from '../utils/localStorage';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 const Account = () => {
   const initialProfile = getUserFromLocalStorage() || {
@@ -13,13 +13,13 @@ const Account = () => {
     newPassword: '',
     confirmPassword: ''
   };
-  
+
   const [profile, setProfile] = useState(initialProfile);
-  const [isEditMode, setIsEditMode] = useState(false); // Toggle between edit and display mode
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Success message state
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
-    saveUserToLocalStorage(profile); // Save profile to local storage on component load
+    saveUserToLocalStorage(profile);
   }, []);
 
   const handleChange = (e) => {
@@ -29,14 +29,14 @@ const Account = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    saveUserToLocalStorage(profile); // Save updated profile to local storage
-    setShowSuccessMessage(true); // Show success message
-    setIsEditMode(false); // Switch back to display mode
-    setTimeout(() => setShowSuccessMessage(false), 3000); // Hide success message after 3 seconds
+    saveUserToLocalStorage(profile);
+    setShowSuccessMessage(true);
+    setIsEditMode(false);
+    setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
   const handleEditClick = () => {
-    setIsEditMode(true); 
+    setIsEditMode(true);
   };
 
   return (
@@ -46,17 +46,17 @@ const Account = () => {
           <ul>
             <li><Link to="/account" className="active">My Profile</Link></li>
             <li><Link to="/address">Address Book</Link></li>
-            <li><Link to="/payment">My Payment Options</Link></li> 
+            <li><Link to="/payment">My Payment Options</Link></li>
             <li><Link to="/returns">My Returns</Link></li>
-            <li><Link to="/cancellations">My Cancellations</Link></li> 
-            <li><Link to="/wishlist">My Wishlist</Link></li> 
+            <li><Link to="/cancellations">My Cancellations</Link></li>
+            <li><Link to="/wishlist">My Wishlist</Link></li>
           </ul>
         </nav>
       </aside>
 
       <div className="account-content">
         <h2>{isEditMode ? 'Edit Your Profile' : 'Your Profile'}</h2>
-        
+
         {showSuccessMessage && <p className="success-message">Saved Successfully!</p>}
 
         {isEditMode ? (

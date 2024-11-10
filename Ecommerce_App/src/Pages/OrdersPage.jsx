@@ -7,12 +7,12 @@ function OrdersPage() {
     
     // State to hold orders data
     const [orders, setOrders] = useState([]);
-    
-    // Load orders from localStorage when the component mounts
+
+    // Load orders from localStorage when the component mounts or the page is refreshed
     useEffect(() => {
         const storedOrders = JSON.parse(localStorage.getItem('orders')) || [];
         setOrders(storedOrders);
-    }, []);
+    }, []); // Empty dependency array ensures this only runs on mount or when page is refreshed
     
     const handleCancelProduct = (orderIndex, itemIndex) => {
         const updatedOrders = [...orders];

@@ -1,4 +1,3 @@
-// Navbar.js
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,7 +9,7 @@ import "../Pages/Navbar.css";
 function Navbar() {
   const { cartItems } = useSelector((state) => state.cart);
   const { wishlistItems } = useSelector((state) => state.wishlist);
-  const user = useSelector((state) => state.user.user); // Ensure correct destructuring
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 

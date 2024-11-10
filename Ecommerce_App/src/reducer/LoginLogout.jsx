@@ -9,10 +9,16 @@ const initialState = {
 const loginLogoutReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
+      // Clear the previous user's data on login
+      removeFromLocalStorage('wishlist');
+      removeFromLocalStorage('cart');
+      
       saveToLocalStorage('user', action.payload);
       return {
         ...state,
         user: action.payload,
+        wishlist: [],  // Clear wishlist for new user
+        cart: [],      // Clear cart for new user
       };
 
     case 'LOGOUT':
