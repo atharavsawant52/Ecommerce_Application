@@ -12,4 +12,14 @@
     color: #333;
     text-align: center;
   }
-  
+
+  @media (max-width: 768px) {
+    .coming-soon-container {
+        height: auto;
+        padding: 20px;
+    }
+
+    .coming-soon-text {
+        font-size: 2rem;
+    }
+}

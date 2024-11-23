@@ -69,3 +69,54 @@
   .highlight h3 {
     color: rgb(3, 3, 3);
   }
+
+  @media (max-width: 768px) {
+    .about-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .about-text {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .about-image img {
+      max-width: 100%;
+    }
+  
+    .stats-container {
+      flex-direction: column;
+    }
+  
+    .stat-box {
+      margin: 10px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-container {
+      padding: 20px;
+    }
+  
+    .about-text h2 {
+      font-size: 1.5em;
+    }
+  
+    .about-text p {
+      font-size: 0.9em;
+    }
+  
+    .stat-box h3 {
+      font-size: 1.2em;
+    }
+  
+    .stat-box p {
+      font-size: 0.8em;
+    }
+  
+    .icon {
+      font-size: 1.5em;
+    }
+  }
+  

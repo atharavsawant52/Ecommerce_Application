@@ -60,3 +60,41 @@
     flex: 1;
     text-align: right;
 }
+
+
+@media (max-width: 768px) {
+    .my-cancellations {
+        padding: 15px;
+    }
+
+    .my-cancellations h2 {
+        font-size: 1.5rem;
+    }
+
+    .cancellation-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px;
+    }
+
+    .item-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .item-info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .item-name {
+        font-size: 0.8rem;
+    }
+
+    .item-price, .item-quantity {
+        font-size: 0.8rem;
+        text-align: left;
+    }
+}

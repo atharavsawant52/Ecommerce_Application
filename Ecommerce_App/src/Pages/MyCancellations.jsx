@@ -4,11 +4,10 @@ import './MyCancellations.css';
 const MyCancellations = () => {
     const [cancellations, setCancellations] = useState([]);
 
-    // Load cancellations from localStorage when the component mounts or page is refreshed
     useEffect(() => {
         const cancellationsData = JSON.parse(localStorage.getItem('cancellations')) || [];
         setCancellations(cancellationsData);
-    }, []); // Empty dependency array ensures this only runs on mount or when page is refreshed
+    }, []); 
 
     return (
         <div className="my-cancellations">

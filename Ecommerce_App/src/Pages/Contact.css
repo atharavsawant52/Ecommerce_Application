@@ -54,4 +54,61 @@
     background-color: #c0392b;
   }
   
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      padding: 10px;
+      min-height: auto;
+    }
   
+    .contact-info, .contact-form {
+      flex: 1 1 auto;
+      margin-bottom: 20px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .contact-info h3 {
+      font-size: 1.5em;
+    }
+  
+    .contact-info p {
+      font-size: 0.85em;
+    }
+  
+    .contact-form input,
+    .contact-form textarea {
+      font-size: 0.9em;
+      padding: 8px;
+    }
+  
+    .contact-form button {
+      font-size: 0.9em;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 5px;
+    }
+  
+    .contact-info h3 {
+      font-size: 1.2em;
+    }
+  
+    .contact-info p {
+      font-size: 0.8em;
+    }
+  
+    .contact-form input,
+    .contact-form textarea {
+      padding: 6px;
+      font-size: 0.85em;
+    }
+  
+    .contact-form button {
+      font-size: 0.85em;
+      padding: 6px;
+    }
+  }
+   

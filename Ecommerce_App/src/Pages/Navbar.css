@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -16,21 +17,22 @@ body {
   background-color: white;
   border-bottom: 1px solid #eaeaea;
   position: fixed;
-  top: 0; 
+  top: 0;
   left: 0;
-  right: 0; 
-  z-index: 1000; 
+  right: 0;
+  z-index: 1000;
 }
-
 
 .logo h1 {
   font-size: 24px;
   font-weight: bold;
+  font-weight: 400;
 }
 
 .nav-links {
   list-style-type: none;
   display: flex;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-links li {
@@ -75,27 +77,40 @@ body {
 
 .icon-container {
   position: relative;
-  margin-right: 20px; 
-  color: #333; 
-  font-size: 20px; 
+  margin-right: 20px;
+  color: #333;
+  font-size: 20px;
 }
 
 .count {
   position: absolute;
-  top: -9px; 
-  right: -10px; 
-  background-color: #ff4757; 
-  color: white; 
-  border-radius: 50%; 
-  padding: 3px 6px; 
+  top: -9px;
+  right: -10px;
+  background-color: #ff4757;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
   font-weight: bold;
-  font-size: 8px; 
+  font-size: 8px;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  background-color: #333;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  display: block;
 }
 
 
 .profile-dropdown {
   position: absolute;
-  top: 40px; 
+  top: 40px;
   right: 0;
   background-color: white;
   border-radius: 10px;
@@ -140,11 +155,106 @@ body {
   cursor: pointer;
 }
 
-.profile-dropdown li a svg, .profile-dropdown li button svg {
+.profile-dropdown li a svg,
+.profile-dropdown li button svg {
   margin-right: 10px;
   font-size: 16px;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
 
+  .logo {
+    flex: 0;
+    margin-left: auto;
+    
+  }
 
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    display: none;
+    gap: 10px;
+    margin-top: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .nav-links li a.active {
+    background-color: #f0f0f0; 
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    order: -1;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+
+  .profile-dropdown {
+    width: 200px;
+    left: 0.1%;
+    top: 40px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .profile-dropdown ul {
+    padding: 10px;
+  }
+
+  .profile-dropdown li {
+    font-size: 16px;
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .profile-dropdown li:hover {
+    background-color: #f9f9f9;
+  }
+
+  .profile-dropdown li svg {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .profile-dropdown li svg {
+    font-size: 20px;
+  }
+}
 

@@ -9,3 +9,17 @@
     margin-top: 200px;
     font-size: large;
 }
+
+@media (max-width: 768px) {
+    .category-page__product-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-page__no-products {
+        margin-left: 0;
+        margin-top: 50px;
+        font-size: medium;
+        text-align: center;
+    }
+}

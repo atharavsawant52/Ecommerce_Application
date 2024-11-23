@@ -18,8 +18,9 @@ function CardComponent() {
     useEffect(() => {
         const storedCart = getCartFromLocalStorage();
         if (storedCart.length > 0) {
+            dispatch(updateCart(storedCart));
         }
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         saveCartToLocalStorage(cartItems);
@@ -32,6 +33,11 @@ function CardComponent() {
             );
             dispatch(updateCart(updatedItems));
         }
+    };
+
+    const handleDeleteItem = (id) => {
+        const updatedItems = cartItems.filter(item => item.id !== id);
+        dispatch(updateCart(updatedItems));
     };
 
     const handleApplyCoupon = () => {
@@ -72,6 +78,7 @@ function CardComponent() {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Subtotal</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,6 +116,14 @@ function CardComponent() {
                                     </div>
                                 </td>
                                 <td>₹{item.price * item.quantity}</td>
+                                <td>
+                                    <button
+                                        className="delete-btn"
+                                        onClick={() => handleDeleteItem(item.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
